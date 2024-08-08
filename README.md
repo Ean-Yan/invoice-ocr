@@ -48,8 +48,8 @@ https://github.com/colorofnight86/eisms-ocr
 
 1. ocr.ocr()函数返回字典，需要使用result['text']获取文本内容
    
-参考：https://github.com/Chandler-Lu/alfred-ocr/issues/14
+   参考：https://github.com/Chandler-Lu/alfred-ocr/issues/14
 
 3. cv2.line()需传入astype(int)点位，否则报错
    
-参考：https://forum.opencv.org/t/overload-resolution-failed-can-t-parse-pt1-sequence-item-with-index-0-has-a-wrong-type/12741
+   参考：https://forum.opencv.org/t/overload-resolution-failed-can-t-parse-pt1-sequence-item-with-index-0-has-a-wrong-type/12741
