@@ -1,7 +1,7 @@
 # 发票OCR
 
-该项目参考https://github.com/SanLiWuXun/ReceiptAutoInfoExtract
-并在此基础上进行改进优化
+项目参考自https://github.com/SanLiWuXun/ReceiptAutoInfoExtract与https://github.com/colorofnight86/eisms-ocr
+并因为OpenCV版本更新导致原功能无法使用且输出为无效字符串，在此基础上更新
 
 ## 1.原始图像：
 ![](images/test.jpg)
@@ -39,6 +39,12 @@
 
 ![](images/cnocrResults.jpg)
 
-## 5.用flask返回请求
+## 5.更新内容
 
-获取发票图片，使用上述算法进行识别，并对识别结果进行判定，根据不同信息的权重，将判定总分定为20分，超过12分则将识别结果返回给请求方，否则返回“识别率低”的信息。
+1. ocr.ocr()函数返回字典，需要使用result['text']获取文本内容
+   
+参考：https://github.com/Chandler-Lu/alfred-ocr/issues/14
+
+3. cv2.line()需传入astype(int)点位，否则报错
+   
+参考：https://forum.opencv.org/t/overload-resolution-failed-can-t-parse-pt1-sequence-item-with-index-0-has-a-wrong-type/12741
