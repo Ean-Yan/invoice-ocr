@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import cv2
 import numpy as np
@@ -55,7 +54,7 @@ def getCanny(image):
     binary = cv2.dilate(binary, kernel, iterations=1)
 
     # 二值图
-    cv2.imwrite('result/binary.jpg', binary)
+    cv2.imwrite('./result/binary.jpg', binary)
     return binary
 
 
@@ -153,8 +152,12 @@ def imagePreProcessing(path):
     warped = cv2.resize(warped, size, interpolation=cv2.INTER_CUBIC)
 
     # 画边缘框
-    drawRect(image, tuple(boxes[0]), tuple(boxes[1]), tuple(boxes[2]), tuple(boxes[3]), (0, 0, 255), 2)
-    cv2.imwrite("result/outline.jpg", image)
+    p1 = np.array(boxes[0]).astype(int)
+    p2 = np.array(boxes[1]).astype(int)
+    p3 = np.array(boxes[2]).astype(int)
+    p4 = np.array(boxes[3]).astype(int)
+    drawRect(image, p1, p2, p3, p4, (0, 0, 255), 2)
+    cv2.imwrite("./result/outline.jpg", image)
 
     return warped
 
@@ -191,13 +194,13 @@ def cropOCR(crop, ocrType):
     elif ocrType == 3:
         text_crop_list = ocr.ocr(crop)
         for i in range(len(text_crop_list)):
-            ocr_text = ''.join(text_crop_list[i]).split(':')[-1].split(';')[-1]
+            ocr_text = ''.join(text_crop_list[i]['text']).split(':')[-1].split(';')[-1]
             # 如果出现- — _ ― 一律算作边框
             if '-' in ocr_text or '—' in ocr_text or '_' in ocr_text or '―' in ocr_text:
                 continue
             text_crop = text_crop + ocr_text + ','
         return text_crop
-    text_crop = ''.join(text_crop_list)
+    text_crop = ''.join(text_crop_list['text'])
     return text_crop
 
 
@@ -253,7 +256,7 @@ def imageOcr(path):
         print(key + ':' + receipt[key])
     receipt.update({"serviceDetails": []})
 
-    cv2.imwrite('result/block.jpg', warped)
+    cv2.imwrite('./result/block.jpg', warped)
 
     # 展示识别区域
     for i in range(len(crop_range_list_data)):
@@ -268,14 +271,10 @@ def imageOcr(path):
     # cv2.imshow('warpImage', warped)
 
     # 保存图片到本地
-    cv2.imwrite('result/result.jpg', warped)
+    cv2.imwrite('./result/result.jpg', warped)
     return receipt
 
 
 if __name__ == '__main__':
-    print(imageOcr("test0.jpg"))
+    print(imageOcr("./test/test0.jpg"))
     # cv2.waitKey(0)
-
-
-
-
