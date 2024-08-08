@@ -1,6 +1,8 @@
 # 发票OCR
 
-项目参考自https://github.com/SanLiWuXun/ReceiptAutoInfoExtract与https://github.com/colorofnight86/eisms-ocr
+项目参考自:
+https://github.com/SanLiWuXun/ReceiptAutoInfoExtract
+https://github.com/colorofnight86/eisms-ocr
 并因为OpenCV版本更新导致原功能无法使用且输出为无效字符串，在此基础上更新
 
 ## 1.原始图像：
